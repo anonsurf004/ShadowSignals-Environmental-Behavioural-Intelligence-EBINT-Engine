@@ -12,134 +12,215 @@ Zero personal data
 
 100% Open OSINT sources
 
-Core Features
-1️⃣ Live Multi-Camera Fallback System
+ShadowSignals — Real-Time EBINT Intelligence Engine
+Zero Personal Data • 100% Legal OSINT • Real-Time Environmental Behaviour Analysis
 
-Uses multiple public webcams (Windy, worldcams, or Insecam extractors)
+ShadowSignals is a next-generation Environmental Behavioural Intelligence (EBINT) system that predicts covert-intent probability using only open-source, real-world environmental micro-signals.
 
-If one camera fails, switches automatically to the next
+It provides a ShadowScore (0–100) that represents the intensity of unusual behaviour in any region using:
 
-Ensures uninterrupted real-time EBINT data
+Public webcam snapshots
 
-2️⃣ Real-Time Signal Extraction
+Weather & atmospheric patterns
 
-Extracts 20+ environmental micro-signals:
+Crowd movement via optical flow
 
-Traffic density
+Traffic density via pixel congestion
 
-Crowd-flow optical flow
+Trend anomalies (Google Trends)
 
-Night-light intensity
+Transport disruptions
 
-Weather (Open-Meteo or OpenWeatherMap)
+Night-light fluctuations
 
-Public trend spikes (Google Trends)
+Entropy-based uncertainty modelling
 
-Public transport delays (GTFS)
+Autoencoder anomaly detection (P100 GPU accelerated)
 
-Region activity baseline (from OSM)
+OSM region baseline modelling
 
-Image entropy & movement energy
+Multi-camera fallback system
 
-3️⃣ ShadowSignal Vector (SSV)
+5-minute real-time update cycle
 
-A fixed-length normalized vector used for ML:
+The entire system runs end-to-end inside a Kaggle Notebook with zero cost and zero infrastructure.
 
-Traffic + Crowd + Night + Weather + Trends + Entropy + Baseline Shifts + Diversity Weights
+ Features
+✅ Live OSINT Environmental Signals
 
-4️⃣ Deep Autoencoder (GPU)
+Public webcams (snapshot URLs)
 
-Heavy PyTorch model
+Multi-camera fallback with automatic switch-over
 
-Trained online
+Real-time weather (Open-Meteo)
 
-Computes anomaly score
+Real-time crowd flow via optical flow
 
-Detects unusual environmental patterns
+Night-light intensity analysis
 
-5️⃣ ShadowGraph Fusion Engine
+Traffic density estimation
 
-Fuses:
+Google Trends dynamic anomaly
 
-Anomaly score
+Transport delays (GTFS, if available)
 
-Entropy changes
+Entropy of each modality
 
-Baseline shifts
+✅ AI Signal Fusion (ShadowGraph Engine)
 
-Diversity weights
+Diversity-weighted fusion
 
-Multi-signal confirmation
+5-minute rolling smoothing
 
-Produces a raw covert-intent score.
+Weather & holiday correction
 
-6️⃣ ShadowScore (0–100)
+Per-region dynamic baselines via OSMnx
 
-Final probability after:
+Entropy-weighted anomaly adjustments
 
-Nonlinear scaling
+Autoencoder anomaly score injection
 
-Weather correction
+Final ShadowScore (0–100)
 
-Baseline offsetting
+✅ Deep Autoencoder (GPU Accelerated)
 
-Smoothing
+Heavy encoder–decoder architecture
 
-7️⃣ Real-Time Dashboard + Log Feed
+Latent bottleneck for anomaly scoring
 
-Shows:
+Continuous online learning buffer
 
-Timestamp
+Adaptive training
 
-ShadowScore
+✅ Real-Time Dashboard
 
-All signal values
+Top signal display
 
-Baseline shifts
+Real-time ShadowScore
 
-Last 5 cycles
+Baseline shift visualization
 
-Auto-refresh every 5 minutes
+Log feed of last 100 cycles
 
-⭐ System Architecture
-Live Webcam Frame → EBINT Extractors → ShadowSignal Vector → GPU Autoencoder
-→ Anomaly Score → ShadowGraph → ShadowScore → Dashboard/Logs
+Cycle timing & system status
 
-⭐ Dynamic / Real-Time Capabilities
+Real-Time Workflow
 
-✔ Live webcam frames every cycle
-✔ Weather refreshed every cycle
-✔ Trends fetched dynamically
-✔ GTFS if available
-✔ Baselines recomputed
-✔ Autoencoder online training
-✔ Auto-loop 24/7 in Kaggle
+Fetch webcam snapshot
 
-✅ 2. FUNCTIONALITY SUMMARY
-✔ Multi-Camera Fallback
+Extract traffic, crowd-flow, night-light
 
-Prevents system failure due to offline cameras.
+Ingest weather + trends + transport
 
-✔ Entropy-Based Behavioural Modelling
+Build ShadowSignal vector
 
-Detects abnormalities in scene activity.
+Compute autoencoder anomaly score
 
-✔ Autoencoder Anomaly Detection
+Fuse signals using ShadowGraph
 
-GPU-powered unusual pattern detection.
+Generate ShadowScore (0–100)
 
-✔ Environmental Micro-Signal Fusion
+Log + dashboard + next cycle
 
-Combines 20+ signals legally & safely.
+Loop refreshes every 5 minutes.
 
-✔ Noise Correction
+Installation (Kaggle)
 
-Weather + holidays + regional baseline shift.
+No installation needed — just open a Kaggle Notebook and run:
 
-✔ ShadowGraph Correlation Layer
+!pip install pytube yt-dlp opencv-python-headless pytrends requests aiohttp nest_asyncio tqdm \
+           scikit-learn torch torchvision torchaudio folium osmnx shapely \
+           geopy gtfs-realtime-bindings numpy pandas matplotlib
 
-Weighted correlation model for covert-intent probability estimation.
+Usage
+Start the auto-loop
+await shadowsignals_auto_loop(
+    webcam_url=LIVE_WEBCAM_URL,
+    youtube_url=None,
+    gtfs_url=None,
+    interval=300   # 5 minutes
+)
 
-✔ ShadowScore
+Live multi-camera fallback (optional)
 
-Scaled 0–100 final output.
+Just list them:
+
+WEBCAM_LIST = [
+    "URL1",
+    "URL2",
+    "URL3"
+]
+
+
+ShadowSignals will automatically switch to the next camera when one fails.
+
+Privacy & Ethics
+
+ShadowSignals processes:
+
+No faces
+
+No license plates
+
+No humans individually
+
+No PII
+
+Only legal public OSINT
+
+Only environmental signals
+
+This system is for research, safety, anomaly spotting, and environmental threat modelling — not surveillance.
+
+Why Environmental Intelligence (EBINT)?
+
+Because human intent influences their environmental impact, even without identifying individuals.
+
+ShadowSignals observes:
+
+Density shifts
+
+Light anomalies
+
+Flow irregularities
+
+Weather disruptions
+
+Public-pattern divergence
+
+Not people.
+
+Outputs
+Example Dashboard:
+Timestamp: 2025-11-27 17:12:46 UTC  
+ShadowScore: 100 / 100  
+
+Top Signals:
+- traffic_density: 0.0000
+- crowd_flow: 0.0000
+- night_light: 0.0000
+...
+- entropy_trend: 1.8280
+- weighted_trend: 119.600
+
+Contributing
+
+PRs are welcome!
+You may add:
+New EBINT signals
+Better fusion algorithms
+LSTM + Autoencoder hybrid
+Regional multi-point baselines
+Visualization dashboards
+
+License
+MIT License (recommended)
+
+Credits
+Developed by: Asmit Dam
+Powered on: Kaggle P100 GPU Free Tier
+Data sources: OSINT-only (public webcams, weather, trends, GTFS)
+
+Final Message
+
+ShadowSignals is a fully dynamic, real-time, zero-cost intelligence system — one of the first open-source EBINT engines built to run entirely on Kaggle.
